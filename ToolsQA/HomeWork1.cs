@@ -21,8 +21,8 @@ namespace ToolsQA
 		public void SetUp()
 		{
 			driver = new ChromeDriver();
+			driver.Manage().Window.Maximize();
 			driver.Url = "https://demoqa.com/automation-practice-form/";
-			driver.Manage().Window.Maximize(); //Why window maximizes after link is opened?
 		}
 
 		[Test]
@@ -47,7 +47,9 @@ namespace ToolsQA
 
 			submitButton.Click();
 
-			firstNameField.SendKeys("ddddddddddddddddddddddddd");//StaleElementReferenceException: element is not attached to the page document
+			firstNameField = driver.FindElement(By.Name("firstname"));
+
+			firstNameField.SendKeys("ddddddddddddddddddddddddd");
 			var fAtribute = firstNameField.GetAttribute("value");
 			Assert.IsNotEmpty(fAtribute);
 		}
