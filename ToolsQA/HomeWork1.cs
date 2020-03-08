@@ -96,7 +96,7 @@ namespace ToolsQA
 		public void ChildElementTest()
 		{
 			var list = driver.FindElement(By.XPath("//*[@id='beverages']/child::li[1]"));
-			Assert.AreEqual("Coffee", list.GetAttribute("value")); //Isn't value Coffee?
+			Assert.AreEqual("Coffee", list.Text); //Isn't value Coffee?
 
 		}
 
