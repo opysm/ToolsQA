@@ -14,19 +14,37 @@ namespace ToolsQA.UI.Page
 
 		private IWebElement EmailCreateField => DriverFactory.Get().FindElement(By.Id("email_create"));
 		private IWebElement CreateAccountButton => DriverFactory.Get().FindElement(By.Id("SubmitCreate"));
+		private IWebElement EmailRegisteredField => DriverFactory.Get().FindElement(By.Id("email"));
+		private IWebElement PasswordField => DriverFactory.Get().FindElement(By.Id("passwd"));
+		private IWebElement SignInButton => DriverFactory.Get().FindElement(By.Id("SubmitLogin"));
 
 		#endregion Page Mapping
 
 		#region Page Objects
 
-		public void SetNewEmail(String text)
+		public void SetNewEmail(String eMail)
 		{
-			EmailCreateField.SendKeys(text);
+			EmailCreateField.SendKeys(eMail);
 		}
 
 		public void CreateAccount()
 		{
 			CreateAccountButton.Click();
+		}
+
+		public void SetRegisteredEmail(string eMail)
+		{
+			EmailRegisteredField.SendKeys(eMail);
+		}
+
+		public void SetPassword(string password)
+		{
+			PasswordField.SendKeys(password);
+		}
+
+		public void SignIn()
+		{
+			SignInButton.Click();
 		}
 
 		#endregion Page Objects

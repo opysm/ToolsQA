@@ -91,7 +91,7 @@ namespace ToolsQA.UI.Page
 			MobilePhoneField.SendKeys(phone);
 		}
 
-		public void Register()
+		public void CreateAccount()
 		{
 			RegisterButton.Click();
 		}

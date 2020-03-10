@@ -18,13 +18,14 @@ namespace ToolsQA.Test
 		{
 			DriverFactory.Initialize("http://automationpractice.com/index.php");
 			ToolsQAPages.IndexPage.OpenSignInPage();
+			DriverFactory.Get().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 		}
 
 		[Test]
-		public void CreateAccountTet()
+		public void CreateAccountTest()
 		{
-			string eMail = $"testmail{new Random().Next(1000000)}@gmail.com";
-
+			string eMail = $"testmail{DateTime.Now.Ticks}@gmail.com";
+			
 			string firstName = "James";
 			string lastName = "Bakh";
 			string password = "Qwerty123!@#";
@@ -35,9 +36,6 @@ namespace ToolsQA.Test
 			string code = "77777";
 			string phone = "0971234567";
 			string successTitle = "My account - My Store";
-
-			//Where is the best place to put ImplicitWait???
-			DriverFactory.Get().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
 			ToolsQAPages.SignInPage.SetNewEmail(eMail);
 			ToolsQAPages.SignInPage.CreateAccount();
@@ -52,7 +50,21 @@ namespace ToolsQA.Test
 			ToolsQAPages.CreateAccountPage.SetState(state);
 			ToolsQAPages.CreateAccountPage.SetZipCode(code);
 			ToolsQAPages.CreateAccountPage.SetMobilePhone(phone);
-			ToolsQAPages.CreateAccountPage.Register();
+			ToolsQAPages.CreateAccountPage.CreateAccount();
+			
+			Assert.AreEqual(successTitle, DriverFactory.Get().Title);
+		}
+
+		[Test]
+		public void LogInTest()
+		{
+			string eMail = "testmail000@gmail.com";
+			string password = "Qwerty123!@#";
+			string successTitle = "My account - My Store";
+
+			ToolsQAPages.SignInPage.SetRegisteredEmail(eMail);
+			ToolsQAPages.SignInPage.SetPassword(password);
+			ToolsQAPages.SignInPage.SignIn();
 
 			Assert.AreEqual(successTitle, DriverFactory.Get().Title);
 		}
