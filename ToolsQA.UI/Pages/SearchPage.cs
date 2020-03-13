@@ -1,12 +1,15 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ToolsQA.Framework;
 
-namespace ToolsQA.UI.Page
+namespace ToolsQA.UI.Pages
 {
     public class SearchPage
     {
@@ -14,8 +17,11 @@ namespace ToolsQA.UI.Page
 
 		private IWebElement SearchWarning => DriverFactory.Get().FindElement(By.ClassName("alert-warning"));
 		private IReadOnlyCollection<IWebElement> products => DriverFactory.Get().FindElements(By.XPath("//div[@class='product-container']"));
+		private IWebElement FirstProductContainer => DriverFactory.Get().FindElement(By.ClassName("product-container"));
 		private IWebElement FirstProductName => DriverFactory.Get().FindElement(By.XPath("//div[@class='product-container']/div/h5/a"));
 		private IWebElement FirstProductPrice => DriverFactory.Get().FindElement(By.XPath("(//span[@class='price product-price'])[2]"));
+		private IWebElement FirstProductAddToCartButton => DriverFactory.Get().FindElement(By.XPath("//a[@title='Add to cart']"));
+		private IWebElement ProceedToCheckoutButton => DriverFactory.Get().FindElement(By.XPath("//a[@title='Proceed to checkout']"));
 
 		#endregion Page Mapping
 
@@ -41,6 +47,17 @@ namespace ToolsQA.UI.Page
 			return FirstProductPrice.Text;
 		}
 
+		public void FirstProductAddToCart()
+		{
+			Actions action = new Actions(DriverFactory.Get());
+			action.MoveToElement(FirstProductContainer).Perform();
+			FirstProductAddToCartButton.Click();
+		}
+
+		public void ProceedToCheckout()
+		{
+			ProceedToCheckoutButton.Click();
+		}
 		#endregion Page Objects
 	}
 }

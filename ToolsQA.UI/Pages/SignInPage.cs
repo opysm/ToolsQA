@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToolsQA.Framework;
 
-namespace ToolsQA.UI.Page
+namespace ToolsQA.UI.Pages
 {
     public class SignInPage
     {

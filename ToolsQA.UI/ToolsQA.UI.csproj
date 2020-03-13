@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Pages\CreateAccountPage.cs" />
     <Compile Include="Pages\IndexPage.cs" />
+    <Compile Include="Pages\OrderPage.cs" />
     <Compile Include="Pages\SearchPage.cs" />
     <Compile Include="Pages\SignInPage.cs" />
     <Compile Include="ToolsQAPages.cs" />
